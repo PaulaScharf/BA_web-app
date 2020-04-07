@@ -1,0 +1,10 @@
+.ct-permission-request {
+    position: absolute;
+    text-align: center;
+    vertical-align: middle;
+    z-index: 10000;
+    color: white;
+    text-shadow: black 0.1em 0.1em 0.2em;
+    font-size: xx-large;
+    background-color: rgba(255,255,255,0.3)
+}

@@ -1,0 +1,50 @@
+{
+    "name": "ar-camera-stream",
+    "title": "Camera Bundle",
+    "version": "1.0.22",
+    "main": "",
+    "i18n": [],
+    "dependencies": {
+        "apprt-core": "^4.8.0"
+    },
+    "CSS-Themes-Extension": [{
+            "name": "*",
+            "files": ["styles/styles.css"]
+        }],
+    "layout-widgets": [{
+            "widgetRole": "camera",
+            "template": "seasons",
+            "attachTo": "mapPlaceHolder"
+        }],
+    "components": [{
+            "name": "Config",
+            "impl": "./CameraWidgetFactory",
+            "provides": ["dijit.Widget"],
+            "instanceFactory": true,
+            "properties": {
+                "widgetRole": "camera"
+            }
+        }, {
+            "name": "CameraToggleTool",
+            "impl": "ct/tools/Tool",
+            "provides": ["ct.tools.Tool"],
+            "propertiesConstructor": true,
+            "properties": {
+                "id": "cameraToggleTool",
+                "active": true,
+                "iconClass": "icon-camera",
+                "toolRole": "toolset",
+                "togglable": true,
+                "rules": {
+                    "noGroup": true
+                },
+                "activateHandler": "startStream",
+                "deactivateHandler": "stopStream"
+            },
+            "references": [{
+                    "name": "handlerScope",
+                    "providing": "dijit.Widget",
+                    "filter": "(widgetRole=camera)"
+                }]
+        }]
+}

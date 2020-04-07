@@ -1,0 +1,25 @@
+{
+    "name": "ar-config",
+    "title": "Configuration",
+    "description": "This bundle provides the configuration for the AR bundles",
+    "version": "0.0.9",
+    "dependencies": {
+        "apprt-core": "^4.7.2"
+    },
+    "main": "",
+    "i18n": [],
+    "components": [{
+            "name": "Config",
+            "impl": "./ConfigFactory",
+            "instanceFactory": true,
+            "provides": ["ar-config.Config"],
+            "properties": {
+                "fov": 55,
+                "sensorUpdateTimeThreshold": 100,
+                "sensorUpdateDegreeThreshold": 2,
+                "locationUpdateDistanceThreshold": 2,
+                "enableHighAccuracy": true,
+                "ignorePositionUpdate": false
+            }
+        }]
+}

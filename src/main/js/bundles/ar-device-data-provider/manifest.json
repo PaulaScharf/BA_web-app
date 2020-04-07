@@ -1,0 +1,43 @@
+{
+    "name": "ar-device-data-provider",
+    "title": "Device Data Provider",
+    "description": "This bundle provides device location and orientation data",
+    "version": "0.0.9",
+    "dependencies": {
+        "locateme": "^4.7.2",
+        "apprt-core": "^4.7.2",
+        "ar-config": "^0.0.9"
+    },
+    "CSS-Themes-Extension": [{
+            "name": "*",
+            "files": ["styles/styles.css"]
+        }],
+    "main": "",
+    "i18n": [],
+    "components": [{
+            "name": "DeviceDataProvider",
+            "provides": ["ar-device-data-provider.DeviceData"],
+            "immediate": true,
+            "instanceFactory": true,
+            "references": [{
+                    "name": "locationProvider",
+                    "providing": "locateme.LocationProvider"
+                }, {
+                    "name": "appContext",
+                    "providing": "ct.framework.api.ApplicationContext"
+                }, {
+                    "name": "config",
+                    "providing": "ar-config.Config"
+                }]
+        }, {
+            "name": "CompassCalibrationHandler",
+            "enabled": false,
+            "references": [{
+                    "name": "deviceData",
+                    "providing": "ar-device-data-provider.DeviceData"
+                }, {
+                    "name": "windowManager",
+                    "providing": "ct.framework.api.WindowManager"
+                }]
+        }]
+}

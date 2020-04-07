@@ -1,0 +1,169 @@
+{
+    "load": {
+        "bundleLocations": [
+            "localbundles",
+            "bundles"
+        ],
+        "allowedBundles": [
+            "system",
+            "splashscreen",
+            "templatelayout",
+            "template-seasons",
+            "theme-everlasting",
+            "console",
+            "map-init",
+            "ar-config",
+            "ar-device-data-provider",
+            "ar-device-data-ui",
+            "ar-scene-controller",
+            "ar-camera-stream",
+            "toolset",
+            "console"
+        ],
+        "styles": [
+            "${app}:app.css"
+        ]
+    },
+    "bundles": {
+        "map-init": {
+            "Config": {
+                "map": {
+                    "layers": [{
+                            "type": "AGS_FEATURE",
+                            "portalItem": {
+                                "id": "7eca79147afc4923b007da5c9f592829",
+                                "portal": {
+                                    "url": "https://arcgis.com"
+                                }
+                            },
+                            "elevationInfo": {
+                                "mode": "relative-to-ground",
+                                "featureExpressionInfo": {
+                                    "expression": "$feature.height/2"
+                                }
+                            },
+                            "renderer": { 
+                                "type": "simple",
+                                "symbol": { 
+                                    "type": "point-3d",
+                                    "symbolLayers": [{
+                                            "type": "object",
+                                            "resource": {
+                                                "primitive": "sphere"
+                                            },
+                                            "material": {
+                                                "color": [255, 0, 0, 0.75]
+                                            }
+                                        }
+                                    ]
+                                },
+                                "visualVariables": [{
+                                        "type": "size",
+                                        "axis": "all",
+                                        "field": "height",
+                                        "valueUnit": "meters"
+                                    }]
+                            },
+                            "outFields": ["*"],
+                            "featureReduction": {
+                                "type": "selection"
+                            },
+                            "labelingInfo": [{
+                                    "labelPlacement": "above-center",
+                                    "labelExpressionInfo": {
+                                        "value": "{Comment}"
+                                    },
+                                    "symbol": {
+                                        "type": "label-3d",
+                                        "symbolLayers": [{
+                                                "type": "text",
+                                                "material": {
+                                                    "color": "black"
+                                                },
+                                                "halo": {
+                                                    "color": [255, 255, 255, 0.7],
+                                                    "size": 2
+                                                },
+                                                "size": 10
+                                            }],
+                                        "verticalOffset": {
+                                            "screenLength": 2,
+                                            "maxWorldLength": 10,
+                                            "minWorldLength": 2
+                                        },
+                                        "callout": {
+                                            "type": "line",
+                                            "size": 0.5,
+                                            "color": [0, 0, 0],
+                                            "border": {
+                                                "color": [255, 255, 255, 0.7]
+                                            }
+                                        }
+                                    }
+                                }]
+                        }, {
+                            "type": "AGS_VECTORTILE",
+                            "portalItem": {
+                                "id": "35923b39ccdd499b880fa193a0e5d4fb",
+                                "portal": {
+                                    "url": "https://arcgis.com"
+                                }
+                            },
+                            "opacity": 0.5
+                        }],
+                    "ground": { 
+                        "layers": [{ 
+                                "id": "globalElevation",
+                                "type": "AGS_ELEVATION",
+                                "url": "https://elevation3d.arcgis.com/arcgis/rest/services/WorldElevation3D/Terrain3D/ImageServer"
+                            }],
+                        "opacity": 0,
+                        "surfaceColor": [ 
+                            255,
+                            255,
+                            255
+                        ],
+                        "navigationConstraint": { 
+                            "type": "stay-above"
+                        }
+                    },
+                    "heightModelInfo": { 
+                        "heightModel": "gravity_related_height",
+                        "heightUnit": "meter"
+                    }
+                },
+                "view": {
+                    "options": {
+                        "3D": {
+                            "alphaCompositingEnabled": true,
+                            "environment": {
+                                "background": {
+                                    "type": "color",
+                                    "color": [0, 0, 0, 0]
+                                },
+                                "starsEnabled": false,
+                                "atmosphereEnabled": false
+                            }
+                        }
+                    },
+                    "viewmode": "3D",
+                    "camera": {
+                        "position": {
+                            "latitude": 51.00840,
+                            "longitude": 7.62731,
+                            "z": 210
+                        },
+                        "tilt": 90,
+                        "heading": 220
+                    },
+                    "constraints": {
+                        "tilt": {
+                            "min": 0.5,
+                            "max": 179.5
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

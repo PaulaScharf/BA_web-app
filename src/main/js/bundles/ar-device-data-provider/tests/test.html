@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script>
+            function testDeviceOrientation() {
+                if (typeof DeviceOrientationEvent !== 'function') {
+                  setResult('DeviceOrientationEvent not detected');
+                }
+                if (typeof DeviceOrientationEvent.requestPermission !== 'function') {
+                  setResult('DeviceOrientationEvent.requestPermission not detected');
+                }
+                DeviceOrientationEvent.requestPermission().then(function(result) {
+                  setResult(result);
+                });
+              }
+
+        function setResult(result) {
+          document.getElementById('result').innerHTML = 'RESULT: ' + result;
+        }
+        </script>
+    </head>
+    <body onload="testDeviceOrientation()">
+        <button onclick="testDeviceOrientation()">Test Device Orientation</button>
+        <br /><br />
+        <div id="result"></div>
+    </body>
+</html>

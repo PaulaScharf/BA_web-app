@@ -1,0 +1,71 @@
+{
+    "name": "ar-device-data-ui",
+    "title": "Sensor Data Bundle",
+    "version": "1.0.14",
+    "dependencies": {
+        "apprt-vue": "^4.7.2",
+        "apprt-vuetify": "^4.7.2",
+        "apprt-core": "^4.7.2",
+        "apprt-binding": "^4.7.2",
+        "ar-config": "^0.0.9"
+    },
+    "main": "",
+    "i18n": [],
+    "layout-widgets": [{
+            "widgetRole": "sensorData",
+            "template": "seasons",
+            "window": {
+                "dockTool": "sensorDataUIToggleTool",
+                "minimizeOnClose": true,
+                "windowClass": "noTitleBar",
+                "dockable": true,
+                "dockingBar": "${id}-dockingBarBottomLeft",
+                "marginBox": {
+                    "l": 0,
+                    "h": 411,
+                    "r": 0,
+                    "b": 41
+                },
+                "resizeAxis": {
+                    "t": true,
+                    "b": false,
+                    "l": false,
+                    "r": false
+                },
+                "draggable": false,
+                "fixEdgesInViewPort": {
+                    "t": false
+                }
+            }
+        }],
+    "components": [{
+            "name": "SensorDataWidgetFactory",
+            "provides": ["dijit.Widget"],
+            "instanceFactory": true,
+            "properties": {
+                "widgetRole": "sensorData"
+            },
+            "references": [{
+                    "name": "deviceData",
+                    "providing": "ar-device-data-provider.DeviceData"
+                }, {
+                    "name": "config",
+                    "providing": "ar-config.Config"
+                }]
+        }, {
+            "name": "SensorDataUIToggleTool",
+            "impl": "ct/tools/Tool",
+            "provides": ["ct.tools.Tool"],
+            "propertiesConstructor": true,
+            "properties": {
+                "id": "sensorDataUIToggleTool",
+                "title": "Sensor Data",
+                "iconClass": "icon-dashboard",
+                "toolRole": "toolset",
+                "togglable": true,
+                "rules": {
+                    "noGroup": true
+                }
+            }
+        }]
+}

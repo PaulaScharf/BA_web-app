@@ -1,0 +1,25 @@
+{
+    "name": "ar-scene-controller",
+    "title": "Web Scene controller",
+    "version": "1.0.14",
+    "dependencies": {
+        "apprt-binding": "^4.8.3",
+        "esri": "^4.8.3"
+    },
+    "main": "",
+    "i18n": [],
+    "components": [{
+            "name": "CameraController",
+            "immediate": true,
+            "references": [{
+                    "name": "deviceData",
+                    "providing": "ar-device-data-provider.DeviceData"
+                }, {
+                    "name": "config",
+                    "providing": "ar-config.Config"
+                }, {
+                    "name": "mapWidgetModel",
+                    "providing": "map-widget.MapWidgetModel"
+                }]
+        }]
+}
