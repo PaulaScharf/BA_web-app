@@ -46,8 +46,8 @@ class CameraController {
         config = this.config;
         let simulatedPosition = config.simulatedPosition;
 
-        let fov = config.fov;
-        cameraProps.fov = fov;
+      //  let fov = config.fov;
+      //  cameraProps.fov = fov;
 
         let mapWidgetModel = this.mapWidgetModel;
         const deviceData = this.deviceData;
