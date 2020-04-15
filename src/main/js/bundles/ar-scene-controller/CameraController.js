@@ -44,10 +44,9 @@ class CameraController {
 
     activate() {
         config = this.config;
-        let simulatedPosition = config.simulatedPosition;
 
-      //  let fov = config.fov;
-      //  cameraProps.fov = fov;
+        // let fov = config.fov;
+        // cameraProps.fov = fov;
 
         let mapWidgetModel = this.mapWidgetModel;
         const deviceData = this.deviceData;
@@ -64,18 +63,14 @@ class CameraController {
             view = value;
             this._headingWatchHandle = deviceData.watch("compassHeading", compassHeadingCallback);
             this._tiltWatchHandle = deviceData.watch("tilt", tiltCallback);
-            if (simulatedPosition && simulatedPosition.latitude && simulatedPosition.longitude) {
-                cameraProps.position = simulatedPosition;
-            } else {
-                if (!config.ignorePositionUpdate) {
-                    this._positionWatchHandle = deviceData.watch("position", positionCallback);
-                    if (deviceData.position) {
-                        positionCallback({value: deviceData.position});
-                    }
-                    this._positionWatchHandle = deviceData.watch("position", positionCallback);
-                    if (deviceData.position) {
-                        positionCallback({value: deviceData.position});
-                    }
+            if (!config.ignorePositionUpdate) {
+                this._positionWatchHandle = deviceData.watch("position", positionCallback);
+                if (deviceData.position) {
+                    positionCallback({value: deviceData.position});
+                }
+                this._positionWatchHandle = deviceData.watch("position", positionCallback);
+                if (deviceData.position) {
+                    positionCallback({value: deviceData.position});
                 }
             }
         });
