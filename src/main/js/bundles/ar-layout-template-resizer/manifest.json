@@ -1,6 +1,6 @@
 {
-    "name": "ar-view-resizer",
-    "title": "View Resizer",
+    "name": "ar-layout-template-resizer",
+    "title": "Layout Template Resizer",
     "description": "This bundle resizes the view to a 1:1 ratio",
     "version": "0.0.1",
     "dependencies": {
@@ -10,7 +10,7 @@
     "main": "",
     "i18n": [],
     "components": [{
-            "name": "ViewResizer",
+            "name": "TemplateResizer",
             "properties": {},
             "references": [{
                     "name": "config",

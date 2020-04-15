@@ -17,7 +17,7 @@
             "ar-device-data-ui",
             "ar-scene-controller",
             "ar-camera-stream",
-            "ar-view-resizer",
+            "ar-layout-template-resizer",
             "2D-overview-map",
             "toolset",
             "console"
