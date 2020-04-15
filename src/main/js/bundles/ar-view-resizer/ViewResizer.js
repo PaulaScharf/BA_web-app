@@ -37,11 +37,6 @@ class ViewResizer {
                 aspect.after(overviewMap, "resize", () => {
                     overviewMap.domNode.style.height = height - width + "px";
                 });
-
-                let view = value;
-                let camera = view.camera.clone();
-                camera.fov = config.fov;
-                view.camera = camera;
             }
         });
         return waitForView;

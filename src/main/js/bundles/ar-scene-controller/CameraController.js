@@ -61,6 +61,10 @@ class CameraController {
         });
         waitForView.then(value => {
             view = value;
+            let camera = view.camera.clone();
+            camera.fov = config.fov;
+            view.camera = camera;
+
             this._headingWatchHandle = deviceData.watch("compassHeading", compassHeadingCallback);
             this._tiltWatchHandle = deviceData.watch("tilt", tiltCallback);
             if (!config.ignorePositionUpdate) {
