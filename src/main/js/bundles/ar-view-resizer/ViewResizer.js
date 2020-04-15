@@ -1,22 +1,7 @@
 import domGeometry from "dojo/dom-geometry";
 import query from "dojo/query";
 import registry from "dijit/registry";
-
-resizeAppCenter = () => {
-    let applicationCenterContainer = query(".ct-application-center");
-    if (applicationCenterContainer && applicationCenterContainer.length) {
-        let container = applicationCenterContainer[0];
-        let marginBox = domGeometry.getMarginBox(container);
-        let width = marginBox.w, height = marginBox.h;
-        if (width > height) {
-            marginBox.w = height;
-        } else {
-            marginBox.h = width;
-        }
-        let widget = registry.byNode(container);
-        widget.resize(marginBox);
-    }
-};
+import aspect from "dojo/aspect";
 
 class ViewResizer {
 
@@ -34,10 +19,31 @@ class ViewResizer {
             }
         });
         waitForView.then(value => {
-            let view = value;
-            view.camera.fov = config.fov;
-            resizeAppCenter();
-        });    
+
+            let applicationCenterContainer = query(".ct-application-center");
+            if (applicationCenterContainer && applicationCenterContainer.length) {
+                let container = applicationCenterContainer[0];
+                let marginBox = domGeometry.getMarginBox(container);
+                let width = marginBox.w, height = marginBox.h;
+
+                let widget = registry.byNode(container);
+                if (width > height) {
+                    marginBox.w = height;
+                } else {
+                    marginBox.h = width;
+                }
+                widget.resize(marginBox);
+                let overviewMap = this.overviewMap;
+                aspect.after(overviewMap, "resize", () => {
+                    overviewMap.domNode.style.height = height - width + "px";
+                });
+
+                let view = value;
+                let camera = view.camera.clone();
+                camera.fov = config.fov;
+                view.camera = camera;
+            }
+        });
         return waitForView;
     }
 

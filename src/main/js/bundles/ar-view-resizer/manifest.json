@@ -18,6 +18,10 @@
                 }, {
                     "name": "mapWidgetModel",
                     "providing": "map-widget.MapWidgetModel"
+                }, {
+                    "name": "overviewMap",
+                    "providing": "dijit.Widget",
+                    "filter": "(widgetRole=overviewMap2D)"
                 }]
         }]
 }
