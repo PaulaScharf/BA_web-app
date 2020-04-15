@@ -18,6 +18,7 @@
             "ar-scene-controller",
             "ar-camera-stream",
             "ar-view-resizer",
+            "2D-overview-map",
             "toolset",
             "console"
         ],
@@ -26,6 +27,26 @@
         ]
     },
     "bundles": {
+        "toolset": {
+            "ToolsetManager": {
+                "toolsets": [{
+                        "id": "toolset1",
+                        "tools": ["cameraToggleTool", "sensorDataUIToggleTool"],
+                        "windowType": "container",
+                        "registerWidget": {
+                            "widgetRole": "footer_right"
+                        },
+                        "container": "ignore",
+                        "cssClass": ""
+                    }]
+            }
+        },
+        "ar-config": {
+            "Config": {
+                "fov": 123,
+                "ignorePositionUpdate": true
+            }
+        },
         "map-init": {
             "Config": {
                 "map": {
