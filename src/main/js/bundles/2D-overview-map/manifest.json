@@ -1,0 +1,42 @@
+{
+    "name": "2D-overview-map",
+    "title": "2D Overview Map Bundle",
+    "version": "1.0.0",
+    "main": "",
+    "i18n": [],
+    "dependencies": {
+        "map-widget": "^4.8.0",
+        "apprt-core": "^4.8.0"
+    },
+    "layout-widgets": [{
+            "widgetRole": "overviewMap2D",
+            "template": "seasons",
+            "attachTo": "mapPlaceHolder",
+            "props": {
+                "style": "width: 100%; height: 200px; bottom: 0;"
+            }
+        }],
+    "components": [{
+            "name": "Config",
+            "impl": "./OverviewMapWidgetFactory",
+            "provides": ["dijit.Widget"],
+            "instanceFactory": true,
+            "immediate": true,
+            "properties": {
+                "widgetRole": "overviewMap2D"
+            },
+            "references": [{
+                    "name": "layerConfigParser",
+                    "providing": "map-config-api.LayerConfigParser"
+                }, {
+                    "name": "mapWidgetFactory",
+                    "providing": "map-widget.MapWidgetFactory"
+                }, {
+                    "name": "mapWidgetModel",
+                    "providing": "map-widget.MapWidgetModel"
+                }, {
+                    "name": "config",
+                    "providing": "ar-config.Config"
+                }]
+        }]
+}
