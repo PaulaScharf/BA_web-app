@@ -2,6 +2,9 @@ import domGeometry from "dojo/dom-geometry";
 import query from "dojo/query";
 import registry from "dijit/registry";
 import aspect from "dojo/aspect";
+import {deferOrCancel} from "apprt-binding/Transformers";
+
+let fixedHeight = 0;
 
 class ViewResizer {
 
@@ -18,28 +21,54 @@ class ViewResizer {
                 });
             }
         });
-        waitForView.then(value => {
-
-            let applicationCenterContainer = query(".ct-application-center");
-            if (applicationCenterContainer && applicationCenterContainer.length) {
-                let container = applicationCenterContainer[0];
-                let marginBox = domGeometry.getMarginBox(container);
-                let width = marginBox.w, height = marginBox.h;
-
-                let widget = registry.byNode(container);
-                if (width > height) {
-                    marginBox.w = height;
-                } else {
-                    marginBox.h = width;
-                }
-                widget.resize(marginBox);
-                let overviewMap = this.overviewMap;
-                aspect.after(overviewMap, "resize", () => {
-                    overviewMap.domNode.style.height = height - width + "px";
-                });
-            }
+        waitForView.then(() => {
+            this.resize();
         });
+
+        config.watch("*", (event) => {
+            if (!(event.name === "verticalFov" || event.name === "horizontalFov")) {
+                return;
+            }
+            deferOrCancel(100, () => {
+                this.resize();
+            })();
+        });
+
         return waitForView;
+    }
+
+    resize() {
+        let applicationCenterContainer = query(".ct-application-center");
+        if (applicationCenterContainer && applicationCenterContainer.length) {
+            let container = applicationCenterContainer[0];
+            let marginBox = domGeometry.getMarginBox(container);
+            let width = marginBox.w, totalHeight = marginBox.h;
+
+            let widget = registry.byNode(container);
+
+            let factor = config.horizontalFov / config.verticalFov;
+            fixedHeight = width * factor;
+
+            marginBox.h = fixedHeight;
+            if (!this._started) {
+                widget.resize(marginBox);
+            } else {
+                widget.domNode.style.height = fixedHeight + "px";
+                widget.getChildren()[0].getChildren()[1].resize(marginBox);
+            }
+
+            let camera = this.camera;
+
+            if (!this._started) {
+            aspect.after(camera, "resize", () => {
+                    camera.domNode.style.height = fixedHeight + "px";
+                });
+                this._started = true;
+            } else {
+                    camera.resize();
+            }
+            widget.getParent().resize();
+        }
     }
 
 }

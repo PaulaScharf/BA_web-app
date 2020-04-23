@@ -5,7 +5,7 @@
     "version": "0.0.1",
     "dependencies": {
         "ar-config": "^0.0.9",
-        "map-widget": "^4.8.3"
+        "map-widget": "^4.8.2"
     },
     "main": "",
     "i18n": [],
@@ -19,9 +19,9 @@
                     "name": "mapWidgetModel",
                     "providing": "map-widget.MapWidgetModel"
                 }, {
-                    "name": "overviewMap",
+                    "name": "camera",
                     "providing": "dijit.Widget",
-                    "filter": "(widgetRole=overviewMap2D)"
+                    "filter": "(widgetRole=camera)"
                 }]
         }]
 }
