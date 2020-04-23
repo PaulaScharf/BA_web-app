@@ -1,5 +1,5 @@
 {
-    "name": "2D-overview-map",
+    "name": "ar-overview-map",
     "title": "2D Overview Map Bundle",
     "version": "1.0.0",
     "main": "",
@@ -14,7 +14,7 @@
             "files": ["styles/styles.css"]
         }],
     "layout-widgets": [{
-            "widgetRole": "overviewMap2D",
+            "widgetRole": "overviewMapAR",
             "template": "seasons",
             "attachTo": "mapPlaceHolder",
             "props": {

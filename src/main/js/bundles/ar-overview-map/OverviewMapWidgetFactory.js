@@ -71,7 +71,7 @@ class OverviewMapWidgetFactory {
         });
 
         const serviceProperties = {
-            widgetRole: "overviewMap2D"
+            widgetRole: "overviewMapAR"
         };
         const interfaces = ["dijit.Widget"];
 
