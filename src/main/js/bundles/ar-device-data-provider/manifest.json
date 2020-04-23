@@ -6,7 +6,8 @@
     "dependencies": {
         "locateme": "^4.7.2",
         "apprt-core": "^4.7.2",
-        "ar-config": "^0.0.9"
+        "ar-config": "^0.0.9",
+        "windowmanager": "^4.7.2"
     },
     "CSS-Themes-Extension": [{
             "name": "*",
