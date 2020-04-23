@@ -10,7 +10,8 @@ class ConfigFactory {
             sensorUpdateDegreeThreshold: undefined,
             locationUpdateDistanceThreshold: undefined,
             enableHighAccuracy: undefined,
-            fov: undefined
+            verticalFov: undefined,
+            horizontalFov: undefined
         })();
         for (let key of Object.keys(properties)) {
             config[key] = properties[key];

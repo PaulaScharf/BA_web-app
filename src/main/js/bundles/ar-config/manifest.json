@@ -4,7 +4,8 @@
     "description": "This bundle provides the configuration for the AR bundles",
     "version": "0.0.9",
     "dependencies": {
-        "apprt-core": "^4.7.2"
+        "apprt-core": "^4.7.2",
+        "windowmanager": "^4.7.2"
     },
     "main": "",
     "i18n": [],
@@ -14,12 +15,44 @@
             "instanceFactory": true,
             "provides": ["ar-config.Config"],
             "properties": {
-                "fov": 55,
+                "verticalFov": 55,
+                "horizontalFov": 55,
                 "sensorUpdateTimeThreshold": 100,
                 "sensorUpdateDegreeThreshold": 2,
                 "locationUpdateDistanceThreshold": 2,
                 "enableHighAccuracy": true,
                 "ignorePositionUpdate": false
             }
+        }, {
+            "name": "SetFOVHandler",
+            "provides": ["ar-config.SetFOVHandler"],
+            "references": [{
+                    "name": "config",
+                    "providing": "ar-config.Config"
+                }, {
+                    "name": "windowManager",
+                    "providing": "ct.framework.api.WindowManager"
+                }]
+        },{
+            "name": "SetFOVToggleTool",
+            "impl": "ct/tools/Tool",
+            "provides": ["ct.tools.Tool"],
+            "propertiesConstructor": true,
+            "properties": {
+                "id": "setFOVToggleTool",
+                "title": "Set FOV values",
+                "iconClass": "icon-cog",
+                "toolRole": "toolset",
+                "togglable": true,
+                "rules": {
+                    "noGroup": true
+                },
+                "activateHandler": "showWindow",
+                "deactivateHandler": "closeWindow"
+            },
+            "references": [{
+                    "name": "handlerScope",
+                    "providing": "ar-config.SetFOVHandler"
+                }]
         }]
 }

@@ -19,8 +19,7 @@
             "ar-camera-stream",
             "ar-layout-template-resizer",
             "2D-overview-map",
-            "toolset",
-            "console"
+            "toolset"
         ],
         "styles": [
             "${app}:app.css"
@@ -31,7 +30,7 @@
             "ToolsetManager": {
                 "toolsets": [{
                         "id": "toolset1",
-                        "tools": ["cameraToggleTool", "sensorDataUIToggleTool"],
+                        "tools": ["cameraToggleTool", "sensorDataUIToggleTool", "setFOVToggleTool"],
                         "windowType": "container",
                         "registerWidget": {
                             "widgetRole": "footer_right"
@@ -43,7 +42,8 @@
         },
         "ar-config": {
             "Config": {
-                "fov": 123,
+                "verticalFov": 92.25,
+                "horizontalFov": 123,
                 "ignorePositionUpdate": true
             }
         },
