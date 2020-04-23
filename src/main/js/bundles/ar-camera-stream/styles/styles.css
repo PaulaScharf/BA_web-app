@@ -1,3 +1,9 @@
+.ct-camera.camera {
+    position: absolute;
+    top:0;
+    width: 100%;
+}
+
 .ct-camera .ct-camera__video {
     position:absolute;
     width:100%;
