@@ -35,6 +35,10 @@ const updateCamera = (value, property) => {
             if (!camera) {
                 return;
             }
+            if (cameraProps.fov !== config.horizontalFov) {
+                cameraProps.fov = config.horizontalFov;
+            }
+
             view.camera = cameraProps;
         })();
     }
@@ -44,9 +48,6 @@ class CameraController {
 
     activate() {
         config = this.config;
-
-        // let fov = config.fov;
-        // cameraProps.fov = fov;
 
         let mapWidgetModel = this.mapWidgetModel;
         const deviceData = this.deviceData;
@@ -62,16 +63,13 @@ class CameraController {
         waitForView.then(value => {
             view = value;
             let camera = view.camera.clone();
-            camera.fov = config.fov;
+            cameraProps.position = camera.position;
+            
+            camera.fov = config.horizontalFov;
             view.camera = camera;
-
             this._headingWatchHandle = deviceData.watch("compassHeading", compassHeadingCallback);
             this._tiltWatchHandle = deviceData.watch("tilt", tiltCallback);
             if (!config.ignorePositionUpdate) {
-                this._positionWatchHandle = deviceData.watch("position", positionCallback);
-                if (deviceData.position) {
-                    positionCallback({value: deviceData.position});
-                }
                 this._positionWatchHandle = deviceData.watch("position", positionCallback);
                 if (deviceData.position) {
                     positionCallback({value: deviceData.position});
@@ -84,7 +82,9 @@ class CameraController {
     deactivate() {
         this._headingWatchHandle.remove();
         this._tiltWatchHandle.remove();
-        this._positionWatchHandle.remove();
+        if (this._positionWatchHandle) {
+            this._positionWatchHandle.remove();
+        }
         this._headingWatchHandle = this._tiltWatchHandle = this._positionWatchHandle = undefined;
         mapWidgetModel = undefined;
     }
@@ -92,39 +92,3 @@ class CameraController {
 }
 
 export default CameraController;
-/*
- var position = this._lastPosition;
- if (position) {
- this._lastPosition = null;
- this._setValue("position", null, position);
- }
- },
- activate: function () {
- this._deviceOrientation.watch("heading", d_lang.hitch(this, this._setValue));
- this._deviceOrientation.watch("tilt", d_lang.hitch(this, this._setValue));
- 
- var self = this;
- this.locationProvider.watchPosition(function (position) {
- if (!self._camera) {
- self._lastPosition = {
- x: position.coords.longitude,
- y: position.coords.latitude,
- z: 7,
- spatialReference: 4326
- };
- } else {
- self._setValue("position", null, {
- x: position.coords.longitude,
- y: position.coords.latitude,
- z: 7,
- spatialReference: 4326
- });
- }
- }, function (error) {
- alert(error);
- }, {
- enableHighAccuracy: true
- });
- }
- * 
- */
