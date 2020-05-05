@@ -8,13 +8,11 @@ class Utils {
         return new ExtPromise((resolve, reject) => {
             // see: https://dev.to/li/how-to-requestpermission-for-devicemotion-and-deviceorientation-events-in-ios-13-46g2
             if (typeof DeviceOrientationEvent.requestPermission === "function") {
-
                 //check if permision has been granted before
                 DeviceOrientationEvent.requestPermission().then(permissionState => {
                     resolve(true);
                 }).catch(error => {
                     // ask for permission
-                    const appRoot = this.appContext.getApplicationRootNode();
                     let marginBox = domGeometry.getMarginBox(domNode);
                     let div = domConstruct.create("div", {
                         innerHTML: "Tap here to start...",
@@ -24,7 +22,7 @@ class Utils {
                         }
                     });
                     div.onclick = () => {
-                        appRoot.removeChild(div);
+                        domNode.removeChild(div);
                         DeviceOrientationEvent.requestPermission().then(permissionState => {
                             if (permissionState === "granted") {
                                 resolve(true);
@@ -35,7 +33,7 @@ class Utils {
                         });
                     };
                     domGeometry.setMarginBox(div, marginBox);
-                    appRoot.appendChild(div);
+                    domNode.appendChild(div);
                 });
             } else {
                 resolve(true);
