@@ -14,7 +14,15 @@
     "layout-widgets": [{
         "widgetRole": "attitudeIndicator",
         "window": {
-            "show": "true"
+            "show": "true",
+            "marginBox": {
+                "w": 100,
+                "h": 150,
+                "b": 100,
+                "r": 50
+            },
+            "resizable": false,
+            "windowClass":"noTitleBarAndWindowTools"
         }
     }],
     "components": [{

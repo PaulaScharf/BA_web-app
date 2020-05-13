@@ -19,6 +19,7 @@
             "ar-camera-stream",
             "ar-layout-template-resizer",
             "ar-overview-map",
+            "attitude-indicator@^1.0.0",
             "toolset"
         ],
         "styles": [
