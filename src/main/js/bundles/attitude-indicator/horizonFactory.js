@@ -10,7 +10,7 @@ class horizonFactory {
         let vm = new Vue(horizon);
         let widget = VueDijit(vm);
         let sensorDataBinding = Binding.create()
-            .syncAllToRight("alpha", "beta", "gamma", ifDefined())
+            .syncAllToRight("alpha", "beta", "gamma", "tilt", ifDefined())
             .bindTo(this.deviceData, vm)
             .enable().syncToRightNow();
         widget.own({
