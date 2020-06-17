@@ -18,7 +18,8 @@ class Utils {
                         innerHTML: "Tap here to start...",
                         "class": "ct-permission-request",
                         style: {
-                            "line-height": marginBox.h + "px"
+                            //TODO: set to marginBox.h?
+                            "line-height": 0 + "px"
                         }
                     });
                     div.onclick = () => {

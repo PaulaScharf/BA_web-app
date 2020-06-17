@@ -14,38 +14,20 @@
             "map-init",
             "ar-config",
             "ar-device-data-provider",
-            "ar-device-data-ui",
             "ar-scene-controller",
             "ar-camera-stream",
-            "ar-layout-template-resizer",
-            "ar-overview-map",
-            "attitude-indicator@^1.0.0",
-            "toolset"
+            "ar-layout-template-resizer"
         ],
         "styles": [
             "${app}:app.css"
         ]
     },
     "bundles": {
-        "toolset": {
-            "ToolsetManager": {
-                "toolsets": [{
-                        "id": "toolset1",
-                        "tools": ["cameraToggleTool", "sensorDataUIToggleTool", "setFOVToggleTool"],
-                        "windowType": "container",
-                        "registerWidget": {
-                            "widgetRole": "footer_right"
-                        },
-                        "container": "ignore",
-                        "cssClass": ""
-                    }]
-            }
-        },
         "ar-config": {
             "Config": {
                 "verticalFov": 92.25,
                 "horizontalFov": 123,
-                "ignorePositionUpdate": true
+                "ignorePositionUpdate": false
             }
         },
         "map-init": {
@@ -54,7 +36,7 @@
                     "layers": [{
                             "type": "AGS_FEATURE",
                             "portalItem": {
-                                "id": "7eca79147afc4923b007da5c9f592829",
+                                "id": "7493c4081da247f2bcd19b1aabc682c5",
                                 "portal": {
                                     "url": "https://arcgis.com"
                                 }
@@ -65,74 +47,41 @@
                                     "expression": "$feature.height/2"
                                 }
                             },
-                            "renderer": { 
+                            "renderer": {
                                 "type": "simple",
-                                "symbol": { 
+                                "symbol": {
                                     "type": "point-3d",
                                     "symbolLayers": [{
-                                            "type": "object",
-                                            "resource": {
-                                                "primitive": "sphere"
-                                            },
-                                            "material": {
-                                                "color": [255, 0, 0, 0.75]
-                                            }
-                                        }
+                                        "type":"object",
+                                        "resource":{
+                                            "primitive": "tetrahedron"
+                                        },
+                                        "material": {
+                                            "color": [255, 0, 0, 0.75]
+                                        },
+                                        "size": 12
+                                    }
                                     ]
-                                },
-                                "visualVariables": [{
-                                        "type": "size",
-                                        "axis": "all",
-                                        "field": "height",
-                                        "valueUnit": "meters"
-                                    }]
+                                }
                             },
+                        "renderer1": {
+                            "type": "simple",
+                            "symbol": {
+                                "type": "point-3d",
+                                "symbolLayers": [{
+                                    "type":"object",
+                                    "resource":{
+                                        "href":"resource('${app}:models/voronoi_liberty_statue.glb')"
+                                    },
+                                    "height":100
+                                }
+                                ]
+                            }
+                        },
                             "outFields": ["*"],
                             "featureReduction": {
                                 "type": "selection"
-                            },
-                            "labelingInfo": [{
-                                    "labelPlacement": "above-center",
-                                    "labelExpressionInfo": {
-                                        "value": "{Comment}"
-                                    },
-                                    "symbol": {
-                                        "type": "label-3d",
-                                        "symbolLayers": [{
-                                                "type": "text",
-                                                "material": {
-                                                    "color": "black"
-                                                },
-                                                "halo": {
-                                                    "color": [255, 255, 255, 0.7],
-                                                    "size": 2
-                                                },
-                                                "size": 10
-                                            }],
-                                        "verticalOffset": {
-                                            "screenLength": 2,
-                                            "maxWorldLength": 10,
-                                            "minWorldLength": 2
-                                        },
-                                        "callout": {
-                                            "type": "line",
-                                            "size": 0.5,
-                                            "color": [0, 0, 0],
-                                            "border": {
-                                                "color": [255, 255, 255, 0.7]
-                                            }
-                                        }
-                                    }
-                                }]
-                        }, {
-                            "type": "AGS_VECTORTILE",
-                            "portalItem": {
-                                "id": "35923b39ccdd499b880fa193a0e5d4fb",
-                                "portal": {
-                                    "url": "https://arcgis.com"
-                                }
-                            },
-                            "opacity": 0.5
+                            }
                         }],
                     "ground": { 
                         "layers": [{ 

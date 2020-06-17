@@ -5,6 +5,7 @@ import aspect from "dojo/aspect";
 import {deferOrCancel} from "apprt-binding/Transformers";
 
 let fixedHeight = 0;
+let fixedWidth = 0;
 
 class ViewResizer {
 
@@ -47,26 +48,56 @@ class ViewResizer {
             let widget = registry.byNode(container);
 
             let factor = config.horizontalFov / config.verticalFov;
-            fixedHeight = width * factor;
+            let orientation = (screen.orientation || {}).type || screen.mozOrientation || screen.msOrientation;
+            if(orientation === "landscape-primary" || orientation === "landscape-secondary") {
+                fixedWidth = totalHeight * factor;
+                fixedHeight = width * (config.verticalFov / config.horizontalFov);
 
-            marginBox.h = fixedHeight;
-            if (!this._started) {
-                widget.resize(marginBox);
-            } else {
-                widget.domNode.style.height = fixedHeight + "px";
-                widget.getChildren()[0].getChildren()[1].resize(marginBox);
-            }
+                marginBox.w = fixedWidth;
 
-            let camera = this.camera;
+                if (!this._started) {
+                    widget.resize(marginBox);
+                } else {
+                    widget.domNode.style.height = fixedHeight + "px";
+                    widget.getChildren()[0].getChildren()[1].resize(marginBox);
+                }
 
-            if (!this._started) {
-            aspect.after(camera, "resize", () => {
-                    camera.domNode.style.height = fixedHeight + "px";
-                });
-                this._started = true;
-            } else {
+                let camera = this.camera;
+
+                if (!this._started) {
+                    aspect.after(camera, "resize", () => {
+                        camera.domNode.style.height = fixedHeight + "px";
+                    });
+                    this._started = true;
+                } else {
                     camera.resize();
+                }
+            } else {
+                fixedHeight = width * factor;
+                fixedWidth = totalHeight * (config.verticalFov / config.horizontalFov);
+
+                marginBox.h = fixedHeight;
+
+                if (!this._started) {
+                    widget.resize(marginBox);
+                } else {
+                    widget.domNode.style.height = fixedHeight + "px";
+                    widget.getChildren()[0].getChildren()[1].resize(marginBox);
+                }
+
+                let camera = this.camera;
+
+                if (!this._started) {
+                    aspect.after(camera, "resize", () => {
+                        camera.domNode.style.height = fixedHeight + "px";
+                    });
+                    this._started = true;
+                } else {
+                    camera.resize();
+                }
             }
+
+
             widget.getParent().resize();
         }
     }

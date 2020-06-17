@@ -33,26 +33,5 @@
                     "name": "windowManager",
                     "providing": "ct.framework.api.WindowManager"
                 }]
-        },{
-            "name": "SetFOVToggleTool",
-            "impl": "ct/tools/Tool",
-            "provides": ["ct.tools.Tool"],
-            "propertiesConstructor": true,
-            "properties": {
-                "id": "setFOVToggleTool",
-                "title": "Set FOV values",
-                "iconClass": "icon-cog",
-                "toolRole": "toolset",
-                "togglable": true,
-                "rules": {
-                    "noGroup": true
-                },
-                "activateHandler": "showWindow",
-                "deactivateHandler": "closeWindow"
-            },
-            "references": [{
-                    "name": "handlerScope",
-                    "providing": "ar-config.SetFOVHandler"
-                }]
         }]
 }
