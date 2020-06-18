@@ -9,7 +9,6 @@
             "splashscreen",
             "templatelayout",
             "template-seasons",
-            "theme-everlasting",
             "console",
             "map-init",
             "ar-config",
@@ -17,9 +16,6 @@
             "ar-scene-controller",
             "ar-camera-stream",
             "ar-layout-template-resizer"
-        ],
-        "styles": [
-            "${app}:app.css"
         ]
     },
     "bundles": {
