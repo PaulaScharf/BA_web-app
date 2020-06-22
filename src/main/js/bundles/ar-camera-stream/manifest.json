@@ -5,7 +5,7 @@
     "main": "",
     "i18n": [],
     "dependencies": {
-        "apprt-core": "^4.8.0"
+        "apprt-core": "4.8.4"
     },
     "CSS-Themes-Extension": [{
             "name": "*",

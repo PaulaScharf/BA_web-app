@@ -4,8 +4,8 @@
     "description": "This bundle resizes the view to a 1:1 ratio",
     "version": "0.0.1",
     "dependencies": {
-        "ar-config": "^0.0.9",
-        "map-widget": "^4.8.2"
+        "ar-config": "0.0.9",
+        "map-widget": "4.8.4"
     },
     "main": "",
     "i18n": [],

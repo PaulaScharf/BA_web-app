@@ -4,10 +4,10 @@
     "description": "This bundle provides device location and orientation data",
     "version": "0.0.9",
     "dependencies": {
-        "locateme": "^4.7.2",
-        "apprt-core": "^4.7.2",
-        "ar-config": "^0.0.9",
-        "windowmanager": "^4.7.2"
+        "locateme": "4.8.4",
+        "apprt-core": "4.8.4",
+        "ar-config": "0.0.9",
+        "windowmanager": "4.8.4"
     },
     "CSS-Themes-Extension": [{
             "name": "*",

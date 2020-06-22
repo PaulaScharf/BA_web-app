@@ -4,8 +4,8 @@
     "description": "This bundle provides the configuration for the AR bundles",
     "version": "0.0.9",
     "dependencies": {
-        "apprt-core": "^4.7.2",
-        "windowmanager": "^4.7.2"
+        "apprt-core": "4.8.4",
+        "windowmanager": "4.8.4"
     },
     "main": "",
     "i18n": [],
