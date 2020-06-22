@@ -5,7 +5,7 @@
     "version": "0.0.1",
     "dependencies": {
         "ar-config": "0.0.9",
-        "map-widget": "4.8.4"
+        "map-widget": "4.7.0"
     },
     "main": "",
     "i18n": [],

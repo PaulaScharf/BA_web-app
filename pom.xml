@@ -194,7 +194,7 @@
                 </executions>
                 <configuration>
                     <properties>
-                        <mapapps.remote.base>http://localhost:8080/mapapps484</mapapps.remote.base>
+                        <mapapps.remote.base>http://localhost:8080/mapapps470</mapapps.remote.base>
                     </properties>
                 </configuration>
             </plugin>
@@ -366,7 +366,7 @@
         <root.build.outputPath>${project.build.directory}/webapp</root.build.outputPath>
         <js.build.outputPath>${root.build.outputPath}/js</js.build.outputPath>
 
-        <mapapps.version>4.8.4</mapapps.version>
+        <mapapps.version>4.7.0</mapapps.version>
         <!-- JS lib versions -->
         <apprt.version>${mapapps.version}</apprt.version>
         <!-- java lib versions -->
