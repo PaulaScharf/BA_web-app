@@ -31,7 +31,7 @@ class ViewResizer {
                 return;
             }
             deferOrCancel(100, () => {
-                this.resize();
+                //this.resize();
             })();
         });
 
@@ -50,8 +50,8 @@ class ViewResizer {
             let factor = config.horizontalFov / config.verticalFov;
             let orientation = (screen.orientation || {}).type || screen.mozOrientation || screen.msOrientation;
             if(orientation === "landscape-primary" || orientation === "landscape-secondary") {
-                fixedWidth = totalHeight * factor;
-                fixedHeight = width * (config.verticalFov / config.horizontalFov);
+                fixedWidth = 682;
+                fixedHeight = 412;
 
                 marginBox.w = fixedWidth;
 
@@ -73,8 +73,8 @@ class ViewResizer {
                     camera.resize();
                 }
             } else {
-                fixedHeight = width * factor;
-                fixedWidth = totalHeight * (config.verticalFov / config.horizontalFov);
+                fixedHeight = 682;
+                fixedWidth = 412;
 
                 marginBox.h = fixedHeight;
 
