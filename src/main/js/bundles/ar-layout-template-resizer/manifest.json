@@ -7,6 +7,14 @@
         "ar-config": "0.0.9",
         "map-widget": "4.7.0"
     },
+    "CSS-Themes-Extension": [
+        {
+            "name": "*",
+            "files": [
+                "styles/styles.css"
+            ]
+        }
+    ],
     "main": "",
     "i18n": [],
     "components": [{

@@ -47,11 +47,11 @@ class ViewResizer {
 
             let widget = registry.byNode(container);
 
-            let factor = config.horizontalFov / config.verticalFov;
+            let factor = config.verticalFov / config.horizontalFov;
             let orientation = (screen.orientation || {}).type || screen.mozOrientation || screen.msOrientation;
             if(orientation === "landscape-primary" || orientation === "landscape-secondary") {
-                fixedWidth = totalHeight * factor;
-                fixedHeight = width * (config.verticalFov / config.horizontalFov);
+                fixedWidth = 722;
+                fixedHeight = fixedWidth * factor;
 
                 marginBox.w = fixedWidth;
 
@@ -73,15 +73,17 @@ class ViewResizer {
                     camera.resize();
                 }
             } else {
-                fixedHeight = width * factor;
-                fixedWidth = totalHeight * (config.verticalFov / config.horizontalFov);
+                fixedHeight = 722;
+                fixedWidth = fixedHeight * factor;
 
                 marginBox.h = fixedHeight;
+                marginBox.w = fixedWidth;
 
                 if (!this._started) {
                     widget.resize(marginBox);
                 } else {
                     widget.domNode.style.height = fixedHeight + "px";
+                    widget.domNode.style.width = fixedWidth + "px";
                     widget.getChildren()[0].getChildren()[1].resize(marginBox);
                 }
 
@@ -90,6 +92,7 @@ class ViewResizer {
                 if (!this._started) {
                     aspect.after(camera, "resize", () => {
                         camera.domNode.style.height = fixedHeight + "px";
+                        camera.domNode.style.width = fixedWidth + "px";
                     });
                     this._started = true;
                 } else {
