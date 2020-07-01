@@ -43,7 +43,7 @@
                                     "expression": "$feature.height/2"
                                 }
                             },
-                            "renderer": {
+                            "renderer1": {
                                 "type": "simple",
                                 "symbol": {
                                     "type": "point-3d",
@@ -60,7 +60,7 @@
                                     ]
                                 }
                             },
-                        "renderer1": {
+                        "renderer": {
                             "type": "simple",
                             "symbol": {
                                 "type": "point-3d",
