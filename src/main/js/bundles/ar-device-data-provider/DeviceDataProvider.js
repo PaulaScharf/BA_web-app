@@ -2,6 +2,7 @@ import {declare} from "apprt-core/Mutable";
 import Exception from "apprt-core/Exception";
 import Utils from "./Utils";
 import has from "dojo/sniff";
+import GeolocationAPILocationProvider from "./GeolocationAPILocationProvider";
 
 const deviceData = new declare({
     position: undefined,
@@ -51,7 +52,7 @@ class DeviceDataProvider {
         let promise = Utils.requestDeviceOrientationPermission(this.appContext.getApplicationRootNode());
         promise.then(() => {
             window.addEventListener(deviceOrientationEventName, onDevideOrientationUpdate);
-            locationProviderWatchHandle = this.locationProvider.watchPosition(onPositionUpdate, error => {
+            locationProviderWatchHandle = GeolocationAPILocationProvider.watchPosition(onPositionUpdate, error => {
                 console.error(error);
             }, {
                 enableHighAccuracy: this.config.enableHighAccuracy
