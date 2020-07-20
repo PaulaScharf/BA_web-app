@@ -1,6 +1,6 @@
 {
-    "name": "test",
-    "description": "test build",
+    "name": "Web App for Bachelorthesis",
+    "description": "",
     "version": "0.0.1",
     "devDependencies": {
         "ct-mapapps-gulp-js": "^0.2.5",

@@ -1,4 +1,4 @@
-# mapapps-ar-demo
+# BA_web-app
 
 This project uses the device sensors (gps, sensors) to position the web scene's camera. Additionally, the camera stream is used to underlay the web scene.
 
