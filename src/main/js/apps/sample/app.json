@@ -6,7 +6,6 @@
         ],
         "allowedBundles": [
             "system",
-            "splashscreen",
             "templatelayout",
             "template-seasons",
             "map-init",
