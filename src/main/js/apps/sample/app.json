@@ -6,10 +6,8 @@
         ],
         "allowedBundles": [
             "system",
-            "splashscreen",
             "templatelayout",
             "template-seasons",
-            "console",
             "map-init",
             "ar-config",
             "ar-device-data-provider",
