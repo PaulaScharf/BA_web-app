@@ -1,46 +1,4 @@
-import ExtPromise from "apprt-core/Promise";
-import domGeometry from "dojo/dom-geometry";
-import domConstruct from "dojo/dom-construct";
-
 class Utils {
-
-    static requestDeviceOrientationPermission(domNode) {
-        return new ExtPromise((resolve, reject) => {
-            // see: https://dev.to/li/how-to-requestpermission-for-devicemotion-and-deviceorientation-events-in-ios-13-46g2
-            if (typeof DeviceOrientationEvent.requestPermission === "function") {
-                //check if permision has been granted before
-                DeviceOrientationEvent.requestPermission().then(permissionState => {
-                    resolve(true);
-                }).catch(error => {
-                    // ask for permission
-                    let marginBox = domGeometry.getMarginBox(domNode);
-                    let div = domConstruct.create("div", {
-                        innerHTML: "Tap here to start...",
-                        "class": "ct-permission-request",
-                        style: {
-                            //TODO: set to marginBox.h?
-                            "line-height": 0 + "px"
-                        }
-                    });
-                    div.onclick = () => {
-                        domNode.removeChild(div);
-                        DeviceOrientationEvent.requestPermission().then(permissionState => {
-                            if (permissionState === "granted") {
-                                resolve(true);
-                            }
-                        }).catch((error) => {
-                            console.error(error);
-                            reject(error);
-                        });
-                    };
-                    domGeometry.setMarginBox(div, marginBox);
-                    domNode.appendChild(div);
-                });
-            } else {
-                resolve(true);
-            }
-        });
-    }
 
     static getOrientationParameters(event) {
         const alpha = event.alpha, beta = event.beta, gamma = event.gamma;
