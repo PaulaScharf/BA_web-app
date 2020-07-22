@@ -42,9 +42,6 @@ class DeviceDataProvider {
         if (("ondeviceorientationabsolute" in window) && has("mobile")) {
             // mobile Android (on Desktop Chrome the absolute event does not fire)
             deviceOrientationEventName = "deviceorientationabsolute";
-        } else if ("ondeviceorientation" in window) {
-            // iOS or Desktop Chrome
-            deviceOrientationEventName = "deviceorientation";
         } else {
             throw Exception.notImplemented("Device orientation is not supported on your device!");
         }

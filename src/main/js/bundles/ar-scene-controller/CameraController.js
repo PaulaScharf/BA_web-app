@@ -1,6 +1,4 @@
 import {deferOrCancel} from "apprt-binding/Transformers";
-import {distance as geometryEngineDistance} from "esri/geometry/geometryEngine";
-import Point from "esri/geometry/Point";
 
 const compassHeadingCallback = event => {
     let heading = event.value;

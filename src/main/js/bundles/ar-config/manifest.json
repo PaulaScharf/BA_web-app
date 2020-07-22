@@ -23,15 +23,5 @@
                 "enableHighAccuracy": true,
                 "ignorePositionUpdate": false
             }
-        }, {
-            "name": "SetFOVHandler",
-            "provides": ["ar-config.SetFOVHandler"],
-            "references": [{
-                    "name": "config",
-                    "providing": "ar-config.Config"
-                }, {
-                    "name": "windowManager",
-                    "providing": "ct.framework.api.WindowManager"
-                }]
         }]
 }
