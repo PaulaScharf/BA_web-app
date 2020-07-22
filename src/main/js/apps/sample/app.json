@@ -58,23 +58,23 @@
                                     ]
                                 }
                             },
-                        "renderer": {
-                            "type": "simple",
-                            "symbol": {
-                                "type": "point-3d",
-                                "symbolLayers": [{
-                                    "type":"object",
-                                    "resource":{
-                                        "href":"resource('${app}:models/voronoi_liberty_statue.glb')"
-                                    },
-                                    "material": {
-                                        "color": [255, 0, 0, 0.75]
-                                    },
-                                    "height":100
+                            "renderer": {
+                                "type": "simple",
+                                "symbol": {
+                                    "type": "point-3d",
+                                    "symbolLayers": [{
+                                        "type":"object",
+                                        "resource":{
+                                            "href":"resource('${app}:models/complexity5.glb')"
+                                        },
+                                        "material": {
+                                            "color": [255, 0, 0, 0.75]
+                                        },
+                                        "height":100
+                                    }
+                                    ]
                                 }
-                                ]
-                            }
-                        },
+                            },
                             "outFields": ["*"],
                             "featureReduction": {
                                 "type": "selection"

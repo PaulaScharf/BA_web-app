@@ -30,15 +30,5 @@
                     "name": "config",
                     "providing": "ar-config.Config"
                 }]
-        }, {
-            "name": "CompassCalibrationHandler",
-            "enabled": false,
-            "references": [{
-                    "name": "deviceData",
-                    "providing": "ar-device-data-provider.DeviceData"
-                }, {
-                    "name": "windowManager",
-                    "providing": "ct.framework.api.WindowManager"
-                }]
         }]
 }
