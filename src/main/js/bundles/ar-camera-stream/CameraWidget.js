@@ -1,7 +1,6 @@
 import _WidgetBase from "dijit/_WidgetBase";
 import declare from "dojo/_base/declare";
 import domConstruct from "dojo/dom-construct";
-import ct_css from "ct/util/css";
 
 let videoNode = undefined;
 

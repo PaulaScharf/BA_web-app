@@ -33,9 +33,6 @@ const updateCamera = (value, property) => {
             if (!camera) {
                 return;
             }
-            if (cameraProps.fov !== config.horizontalFov) {
-                cameraProps.fov = config.horizontalFov;
-            }
 
             view.camera = cameraProps;
         })();

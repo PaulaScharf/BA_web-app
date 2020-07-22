@@ -26,83 +26,81 @@ class ViewResizer {
             this.resize();
         });
 
-        config.watch("*", (event) => {
-            if (!(event.name === "verticalFov" || event.name === "horizontalFov")) {
-                return;
-            }
-            deferOrCancel(100, () => {
-                this.resize();
-            })();
-        });
-
         return waitForView;
     }
 
     resize() {
-        let applicationCenterContainer = query(".ct-application-center");
-        if (applicationCenterContainer && applicationCenterContainer.length) {
-            let container = applicationCenterContainer[0];
-            let marginBox = domGeometry.getMarginBox(container);
-            let width = marginBox.w, totalHeight = marginBox.h;
+        let camera = this.camera;
+        navigator.mediaDevices.getUserMedia({video: {facingMode: 'environment'}})
+            .then(function (stream) {
+                let trackSettings = stream.getTracks()[0].getSettings();
+                this.config
+                let applicationCenterContainer = query(".ct-application-center");
+                if (applicationCenterContainer && applicationCenterContainer.length) {
+                    let container = applicationCenterContainer[0];
+                    let marginBox = domGeometry.getMarginBox(container);
+                    let width = marginBox.w, totalHeight = marginBox.h;
 
-            let widget = registry.byNode(container);
+                    let widget = registry.byNode(container);
 
-            let factor = config.verticalFov / config.horizontalFov;
-            let orientation = (screen.orientation || {}).type || screen.mozOrientation || screen.msOrientation;
-            if(orientation === "landscape-primary" || orientation === "landscape-secondary") {
-                fixedWidth = 722;
-                fixedHeight = fixedWidth * factor;
+                    let factor = 1/trackSettings.aspectRatio;
+                    let orientation = (screen.orientation || {}).type || screen.mozOrientation || screen.msOrientation;
+                    if(orientation === "landscape-primary" || orientation === "landscape-secondary") {
+                        fixedWidth = 722;
+                        fixedHeight = fixedWidth * factor;
 
-                marginBox.w = fixedWidth;
+                        marginBox.w = fixedWidth;
 
-                if (!this._started) {
-                    widget.resize(marginBox);
-                } else {
-                    widget.domNode.style.height = fixedHeight + "px";
-                    widget.getChildren()[0].getChildren()[1].resize(marginBox);
+                        if (!this._started) {
+                            widget.resize(marginBox);
+                        } else {
+                            widget.domNode.style.height = fixedHeight + "px";
+                            widget.getChildren()[0].getChildren()[1].resize(marginBox);
+                        }
+
+
+
+                        if (!this._started) {
+                            aspect.after(camera, "resize", () => {
+                                camera.domNode.style.height = fixedHeight + "px";
+                            });
+                            this._started = true;
+                        } else {
+                            camera.resize();
+                        }
+                    } else {
+                        fixedHeight = 722;
+                        fixedWidth = fixedHeight * factor;
+
+                        marginBox.h = fixedHeight;
+                        marginBox.w = fixedWidth;
+
+                        if (!this._started) {
+                            widget.resize(marginBox);
+                        } else {
+                            widget.domNode.style.height = fixedHeight + "px";
+                            widget.domNode.style.width = fixedWidth + "px";
+                            widget.getChildren()[0].getChildren()[1].resize(marginBox);
+                        }
+
+                        if (!this._started) {
+                            aspect.after(camera, "resize", () => {
+                                camera.domNode.style.height = fixedHeight + "px";
+                                camera.domNode.style.width = fixedWidth + "px";
+                            });
+                            this._started = true;
+                        } else {
+                            camera.resize();
+                        }
+                    }
+
+
+                    widget.getParent().resize();
                 }
-
-                let camera = this.camera;
-
-                if (!this._started) {
-                    aspect.after(camera, "resize", () => {
-                        camera.domNode.style.height = fixedHeight + "px";
-                    });
-                    this._started = true;
-                } else {
-                    camera.resize();
-                }
-            } else {
-                fixedHeight = 722;
-                fixedWidth = fixedHeight * factor;
-
-                marginBox.h = fixedHeight;
-                marginBox.w = fixedWidth;
-
-                if (!this._started) {
-                    widget.resize(marginBox);
-                } else {
-                    widget.domNode.style.height = fixedHeight + "px";
-                    widget.domNode.style.width = fixedWidth + "px";
-                    widget.getChildren()[0].getChildren()[1].resize(marginBox);
-                }
-
-                let camera = this.camera;
-
-                if (!this._started) {
-                    aspect.after(camera, "resize", () => {
-                        camera.domNode.style.height = fixedHeight + "px";
-                        camera.domNode.style.width = fixedWidth + "px";
-                    });
-                    this._started = true;
-                } else {
-                    camera.resize();
-                }
-            }
-
-
-            widget.getParent().resize();
-        }
+            })
+            .catch(function (error) {
+                console.error("Error accessing the camera.", error);
+            });
     }
 
 }

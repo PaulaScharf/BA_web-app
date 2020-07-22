@@ -42,21 +42,21 @@ class DeviceDataProvider {
         if (("ondeviceorientationabsolute" in window) && has("mobile")) {
             // mobile Android (on Desktop Chrome the absolute event does not fire)
             deviceOrientationEventName = "deviceorientationabsolute";
+        } else if ("ondeviceorientation" in window) {
+            // iOS or Desktop Chrome
+            deviceOrientationEventName = "deviceorientation";
         } else {
             throw Exception.notImplemented("Device orientation is not supported on your device!");
         }
 
-        let promise = Utils.requestDeviceOrientationPermission(this.appContext.getApplicationRootNode());
-        promise.then(() => {
-            window.addEventListener(deviceOrientationEventName, onDevideOrientationUpdate);
-            locationProviderWatchHandle = GeolocationAPILocationProvider.watchPosition(onPositionUpdate, error => {
-                console.error(error);
-            }, {
-                enableHighAccuracy: this.config.enableHighAccuracy
-            });
+        window.addEventListener(deviceOrientationEventName, onDevideOrientationUpdate);
+        locationProviderWatchHandle = GeolocationAPILocationProvider.watchPosition(onPositionUpdate, error => {
+            console.error(error);
+        }, {
+            enableHighAccuracy: this.config.enableHighAccuracy
         });
         
-        return promise;
+        return;
     }
 
     deactivate() {

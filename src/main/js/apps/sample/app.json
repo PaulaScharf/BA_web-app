@@ -19,8 +19,6 @@
     "bundles": {
         "ar-config": {
             "Config": {
-                "verticalFov": 92.25,
-                "horizontalFov": 123,
                 "ignorePositionUpdate": false
             }
         },
